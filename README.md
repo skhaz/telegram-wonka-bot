@@ -1,0 +1,23 @@
+
+Deploy
+
+```bash
+export PROJECT_ID=bots-for-telegram
+export TOKEN=your-telegram-bot-token
+```
+
+```bash
+gcloud run deploy wonka \
+    --source "$(pwd)/bot" \
+    --region us-central1 \
+    --allow-unauthenticated \
+    --platform managed \
+    --set-env-vars TOKEN=${TOKEN} \
+    --project ${PROJECT_ID}
+```
+
+Set Webhook (only need to be done once)
+
+```shell
+curl "https://api.telegram.org/bot${TOKEN}/setWebhook?url=$(gcloud run services describe wonka --format 'value(status.url)' --project ${PROJECT_ID})"
+```
