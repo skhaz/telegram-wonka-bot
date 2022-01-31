@@ -8,7 +8,7 @@ export TOKEN=your-telegram-bot-token
 
 ```bash
 gcloud run deploy wonka \
-    --source "$(pwd)/bot" \
+    --source $(pwd) \
     --region us-central1 \
     --allow-unauthenticated \
     --platform managed \
